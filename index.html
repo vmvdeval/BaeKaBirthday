@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bae Ka Birthday 2.0</title>
+    <!-- Add the loading spinner CSS here -->
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; /* Prevent default margin and scrolling behavior */
+            color: white;
+            text-align: center;
+            z-index: 1; /* Set a positive z-index to position the text in front of the background */
+            background-color: black; /* Set the background color to black */
+            font-size: 16px; /* Set a base font size */
+        }
+
+        .loading-spinner {
+            width: 10vmin; /* Use viewport units for a responsive spinner size */
+            height: 10vmin;
+            background-color: #ffcd00; /* Sun-like yellow color */
+            border-radius: 50%;
+            box-shadow: 0 0 2vmin rgba(255, 192, 0, 0.8); /* Sun-like glow using viewport units */
+            margin: 50vh auto; /* Center the spinner vertically */
+            display: none; /* Initially hide the spinner */
+            position: fixed; /* Fixed positioning for overlay effect */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 999; /* Ensure the spinner is on top of other elements */
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Set a negative z-index to position the background behind other content */
+            opacity: 0; /* Initially set the opacity to 0 */
+            animation: fadeIn 3s ease-in-out forwards; /* Adjust the duration and timing function as needed */
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading spinner -->
+    <div class="loading-spinner"></div>
+
+    <!-- Background video -->
+    <video class="background" autoplay muted onended="restartVideo()">
+        <source src="pics/Starry Night.mp4" type="video/mp4"> <!-- Replace "your_video_file.mp4" with the actual file path -->
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Your page content goes here -->
+    <h1>Welcome to Bae Ka Birthday 2.0!</h1>
+    <p>Celebrating the amazing journey together. 🎉</p>
+    <p>This is your awesome content.</p>
+
+    <!-- Your other HTML elements -->
+
+    <!-- Add the loading spinner JavaScript here -->
+    <script>
+        function restartVideo() {
+            // Restart the video when it reaches the end
+            document.querySelector('.background').currentTime = 0;
+            document.querySelector('.background').play();
+        }
+
+        // Display the loading spinner when the page is being loaded
+        window.addEventListener('beforeunload', function () {
+            document.querySelector('.loading-spinner').style.display = 'block';
+        });
+
+        // Hide the loading spinner when the page has finished loading
+        window.addEventListener('load', function () {
+            document.querySelector('.loading-spinner').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
